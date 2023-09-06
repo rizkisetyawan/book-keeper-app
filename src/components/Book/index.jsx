@@ -1,31 +1,43 @@
 import { Card, Flex, Image, Text } from '@mantine/core';
+import PropTypes from 'prop-types';
 
-const Book = () => {
+const Book = ({ data }) => {
+  const { title, author, year, description, image } = data;
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Card.Section>
-        <Image
-          src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
-          height={160}
-          alt="Norway"
-        />
+        {image ? (
+          <Image src={image} height={160} alt={title} />
+        ) : (
+          <Flex bg="gray.3" h={160} justify="center" align="center">
+            <Text fz={18} c="white" fw={800}>
+              No Images
+            </Text>
+          </Flex>
+        )}
       </Card.Section>
-
       <Text weight={500} mt="md" mb="xs">
-        Norway Fjord Adventures
+        {title}
       </Text>
-
-      <Text size="sm" color="dimmed">
-        With Fjord Tours you can explore more of the magical fjord landscapes
-        with tours and activities on and around the fjords of Norway
+      <Text size="sm" color="dimmed" lineClamp={3}>
+        {description}
       </Text>
-
       <Flex justify="space-between" mt="md" gap={8}>
-        <Text fz="sm">Sherlock Holmes</Text>
-        <Text fz="sm">2023</Text>
+        <Text fz="sm">{author}</Text>
+        <Text fz="sm">{year}</Text>
       </Flex>
     </Card>
   );
+};
+
+Book.propTypes = {
+  data: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    year: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    image: PropTypes.string,
+  }).isRequired,
 };
 
 export default Book;

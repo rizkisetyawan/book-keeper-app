@@ -1,14 +1,16 @@
 import {
   Button,
   FileInput,
-  Image,
   Text,
   TextInput,
   Textarea,
   rem,
 } from '@mantine/core';
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { IconPhoto } from '@tabler/icons-react';
+import { modals } from '@mantine/modals';
 
 const initialState = {
   title: '',
@@ -20,7 +22,7 @@ const initialState = {
 
 const MAX_IMAGE_SIZE = 100 * 1024; // 100KB in bytes
 
-const Form = () => {
+const Form = ({ onAddBook }) => {
   const [formState, setFormState] = React.useState(initialState);
   const [errorMessage, setErrorMessage] = React.useState('');
 
@@ -44,19 +46,19 @@ const Form = () => {
         ...formState,
         image: event.target.result,
       });
-      setErrorMessage(''); // Clear any previous error messages
+      setErrorMessage('');
     };
     reader.readAsDataURL(val);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formState);
+    onAddBook(formState);
+    modals.closeAll();
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <Image src={formState.image} width={30} height={30} />
       <TextInput
         label="Title"
         name="title"
@@ -70,9 +72,11 @@ const Form = () => {
         withAsterisk
       />
       <TextInput
+        type="number"
         label="Published Year"
         name="year"
         onChange={handleChangeForm}
+        maxLength={4}
         withAsterisk
       />
       <FileInput
@@ -98,6 +102,10 @@ const Form = () => {
       </Button>
     </form>
   );
+};
+
+Form.propTypes = {
+  onAddBook: PropTypes.func.isRequired,
 };
 
 export default Form;

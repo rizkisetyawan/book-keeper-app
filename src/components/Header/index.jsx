@@ -1,15 +1,12 @@
-import { Container, Header as MHeader, Title } from '@mantine/core';
-import useStyles from './Header.styles';
+import { Container, Flex, Header as MHeader, Title } from '@mantine/core';
 
 function Header() {
-  const { classes } = useStyles();
-
   return (
-    <MHeader height={56} mb={80}>
+    <MHeader height={48} mb={80}>
       <Container>
-        <div className={classes.inner}>
+        <Flex justify="space-between" align="center" h={42}>
           <Title order={4}>Book Keeper App</Title>
-        </div>
+        </Flex>
       </Container>
     </MHeader>
   );
