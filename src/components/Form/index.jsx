@@ -1,15 +1,7 @@
-import {
-  Button,
-  FileInput,
-  Text,
-  TextInput,
-  Textarea,
-  rem,
-} from '@mantine/core';
-import React from 'react';
+import { Button, Text, TextInput, Textarea } from '@mantine/core';
 import PropTypes from 'prop-types';
+import React from 'react';
 
-import { IconPhoto } from '@tabler/icons-react';
 import { modals } from '@mantine/modals';
 
 const initialState = {
@@ -34,8 +26,9 @@ const Form = ({ onAddBook }) => {
     });
   };
 
-  const handleChangeImage = (val) => {
-    if (val.size > MAX_IMAGE_SIZE) {
+  const handleChangeImage = (e) => {
+    const file = e.target.files[0];
+    if (file.size > MAX_IMAGE_SIZE) {
       setErrorMessage('Image size exceeds the maximum limit (100KB).');
       return;
     }
@@ -48,7 +41,7 @@ const Form = ({ onAddBook }) => {
       });
       setErrorMessage('');
     };
-    reader.readAsDataURL(val);
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = (e) => {
@@ -62,12 +55,14 @@ const Form = ({ onAddBook }) => {
       <TextInput
         label="Title"
         name="title"
+        data-testid="title"
         onChange={handleChangeForm}
         withAsterisk
       />
       <TextInput
         label="Author"
         name="author"
+        data-testid="author"
         onChange={handleChangeForm}
         withAsterisk
       />
@@ -75,17 +70,20 @@ const Form = ({ onAddBook }) => {
         type="number"
         label="Published Year"
         name="year"
+        data-testid="year"
         onChange={handleChangeForm}
         maxLength={4}
         withAsterisk
       />
-      <FileInput
+      <TextInput
+        type="file"
         label="Book Cover"
         name="image"
+        data-testid="image"
         onChange={handleChangeImage}
-        icon={<IconPhoto size={rem(14)} />}
         accept="image/*"
       />
+
       {errorMessage && (
         <Text c="red.4" fz="xs">
           {errorMessage}
@@ -94,6 +92,7 @@ const Form = ({ onAddBook }) => {
       <Textarea
         label="Description"
         name="description"
+        data-testid="description"
         onChange={handleChangeForm}
         withAsterisk
       />
