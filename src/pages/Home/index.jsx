@@ -40,6 +40,10 @@ const Home = () => {
     setBooks((prevBooks) => [...prevBooks, book]);
   };
 
+  const handleRemoveBook = (title) => {
+    setBooks((prevBooks) => prevBooks.filter((book) => title !== book.title));
+  };
+
   const handleOpenModal = () => {
     modals.open({
       title: 'Add New Book',
@@ -107,7 +111,7 @@ const Home = () => {
           <Grid>
             {filterBooks.map((row) => (
               <Grid.Col key={row.title} span={6} xs={6} sm={4} md={3}>
-                <Book data={row} />
+                <Book data={row} onRemoveBook={handleRemoveBook} />
               </Grid.Col>
             ))}
           </Grid>

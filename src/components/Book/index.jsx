@@ -1,10 +1,10 @@
-import { Card, Flex, Image, Text } from '@mantine/core';
+import { Card, Flex, Image, Text, CloseButton } from '@mantine/core';
 import PropTypes from 'prop-types';
 
-const Book = ({ data }) => {
+const Book = ({ data, onRemoveBook }) => {
   const { title, author, year, image } = data;
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder>
+    <Card shadow="sm" padding="lg" radius="md" pos="relative" withBorder>
       <Card.Section>
         {image ? (
           <Image src={image} height={160} alt={title} />
@@ -16,6 +16,13 @@ const Book = ({ data }) => {
           </Flex>
         )}
       </Card.Section>
+      <CloseButton
+        aria-label="Close modal"
+        pos="absolute"
+        top={8}
+        right={8}
+        onClick={() => onRemoveBook(title)}
+      />
       <Text weight={500} mt="md" mb="xs">
         {title}
       </Text>
@@ -36,6 +43,7 @@ Book.propTypes = {
     year: PropTypes.string.isRequired,
     image: PropTypes.string,
   }).isRequired,
+  onRemoveBook: PropTypes.func.isRequired,
 };
 
 export default Book;
