@@ -1,8 +1,26 @@
-# React + Vite
+# Book Keeper App
+A brief description of what this project does and who it's for
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Installation
+- Install book-keeper-app from github
+```bash
+  git clone https://github.com/rizkisetyawan/book-keeper-app.git
+  cd book-keeper-app
+```
+- Install Docker, https://docs.docker.com
+- Run book-keeper-app with docker compose
+```bash
+  docker compose up -d --build
+```
+- open the browser and access, http://localhost:8080
 
-Currently, two official plugins are available:
+## Running Tests
+- Install NodeJS LTS, https://nodejs.org
+- To run tests, run the following command
+```bash
+  npm install
+  npm test
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Demo Apps
+🔗 https://book-keeper-app.onrender.com
