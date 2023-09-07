@@ -10,7 +10,6 @@ describe('Form components', () => {
     expect(screen.getByText('Author')).toBeInTheDocument();
     expect(screen.getByText('Published Year')).toBeInTheDocument();
     expect(screen.getByText('Book Cover')).toBeInTheDocument();
-    expect(screen.getByText('Description')).toBeInTheDocument();
     expect(screen.getByText('Submit')).toBeInTheDocument();
   });
 
@@ -21,23 +20,19 @@ describe('Form components', () => {
       title: 'Cantik itu luka',
       author: 'Eka Kurniawan',
       year: '2016',
-      description: 'Some Description ...',
     };
 
     const titleInput = screen.getByTestId('title');
     const authorInput = screen.getByTestId('author');
     const yearInput = screen.getByTestId('year');
-    const descInput = screen.getByTestId('description');
 
     await userEvent.type(titleInput, book.title);
     await userEvent.type(authorInput, book.author);
     await userEvent.type(yearInput, book.year);
-    await userEvent.type(descInput, book.description);
 
     expect(titleInput).toHaveValue(book.title);
     expect(authorInput).toHaveValue(book.author);
     expect(yearInput).toHaveValue(+book.year);
-    expect(descInput).toHaveValue(book.description);
   });
 
   it('should handle upload image < 100kb', async () => {

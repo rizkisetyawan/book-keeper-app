@@ -1,4 +1,4 @@
-import { Button, Text, TextInput, Textarea } from '@mantine/core';
+import { Button, Text, TextInput } from '@mantine/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -9,7 +9,6 @@ const initialState = {
   author: '',
   year: '',
   image: '',
-  description: '',
 };
 
 const MAX_IMAGE_SIZE = 100 * 1024; // 100KB in bytes
@@ -89,13 +88,6 @@ const Form = ({ onAddBook }) => {
           {errorMessage}
         </Text>
       )}
-      <Textarea
-        label="Description"
-        name="description"
-        data-testid="description"
-        onChange={handleChangeForm}
-        withAsterisk
-      />
       <Button fullWidth type="submit" mt="md">
         Submit
       </Button>

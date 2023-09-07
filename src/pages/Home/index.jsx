@@ -11,8 +11,8 @@ import {
   Text,
 } from '@mantine/core';
 import { Book, Form, Header } from '../../components';
+import { dummyBooks } from '../../utils/dummy-data';
 
-const initialBooks = [];
 const initialCategories = {
   title: '',
   author: '',
@@ -20,14 +20,14 @@ const initialCategories = {
 };
 
 const Home = () => {
-  const [books, setBooks] = React.useState(initialBooks);
+  const [books, setBooks] = React.useState(dummyBooks);
   const [categories, setCategories] = React.useState(initialCategories);
 
   const { title, author, year } = categories;
 
-  const bookTitles = books.map(({ title }) => title);
-  const bookYears = books.map(({ year }) => year);
-  const bookAuthors = books.map(({ author }) => author);
+  const bookTitles = [...new Set(books.map(({ title }) => title))];
+  const bookYears = [...new Set(books.map(({ year }) => year))];
+  const bookAuthors = [...new Set(books.map(({ author }) => author))];
 
   const filterBooks = books.filter(
     (book) =>

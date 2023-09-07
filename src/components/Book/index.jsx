@@ -2,7 +2,7 @@ import { Card, Flex, Image, Text } from '@mantine/core';
 import PropTypes from 'prop-types';
 
 const Book = ({ data }) => {
-  const { title, author, year, description, image } = data;
+  const { title, author, year, image } = data;
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Card.Section>
@@ -19,11 +19,10 @@ const Book = ({ data }) => {
       <Text weight={500} mt="md" mb="xs">
         {title}
       </Text>
-      <Text size="sm" color="dimmed" lineClamp={3}>
-        {description}
-      </Text>
-      <Flex justify="space-between" mt="md" gap={8}>
-        <Text fz="sm">{author}</Text>
+      <Flex justify="space-between" gap={8}>
+        <Text c="green.7" fz="sm">
+          {author}
+        </Text>
         <Text fz="sm">{year}</Text>
       </Flex>
     </Card>
@@ -35,7 +34,6 @@ Book.propTypes = {
     title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     year: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
     image: PropTypes.string,
   }).isRequired,
 };

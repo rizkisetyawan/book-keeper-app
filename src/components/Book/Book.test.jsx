@@ -1,11 +1,10 @@
 import Book from './index';
-import { render, screen, userEvent } from '../../utils/test-utils';
+import { render, screen } from '../../utils/test-utils';
 
 const book = {
   title: 'Cantik itu luka',
   author: 'Eka Kurniawan',
   year: '2016',
-  description: 'some description',
   image: 'https://Cantik-itu-Luka-Cover-Besar.jpg',
 };
 
@@ -17,7 +16,6 @@ describe('Book components', () => {
           title: book.title,
           author: book.author,
           year: book.year,
-          description: book.description,
           image: book.image,
         }}
       />
@@ -27,7 +25,6 @@ describe('Book components', () => {
     expect(screen.getByText(book.author)).toBeInTheDocument();
     expect(screen.getByText(book.year)).toBeInTheDocument();
     expect(screen.getByAltText(book.title)).toBeInTheDocument();
-    expect(screen.getByText(book.description)).toBeInTheDocument();
     expect(screen.getByRole('img').getAttribute('src')).toBe(book.image);
   });
 
@@ -38,7 +35,6 @@ describe('Book components', () => {
           title: book.title,
           author: book.author,
           year: book.year,
-          description: book.description,
           image: '',
         }}
       />
