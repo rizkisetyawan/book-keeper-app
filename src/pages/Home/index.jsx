@@ -59,7 +59,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <Container>
+      <Container mb={48}>
         <Flex mb="xl" gap="sm" wrap="wrap">
           <Select
             placeholder="Title"

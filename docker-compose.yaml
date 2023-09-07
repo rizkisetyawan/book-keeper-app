@@ -1,0 +1,11 @@
+version: '0.0.1'
+
+services:
+  app:
+    container_name: book-keeper-app-c
+    image: book-keeper-app-i
+    restart: always
+    build:
+      context: .
+    ports:
+    - 8080:80
