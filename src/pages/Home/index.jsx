@@ -106,7 +106,7 @@ const Home = () => {
         ) : (
           <Grid>
             {filterBooks.map((row) => (
-              <Grid.Col key={row} span={6} xs={6} sm={4} md={3}>
+              <Grid.Col key={row.title} span={6} xs={6} sm={4} md={3}>
                 <Book data={row} />
               </Grid.Col>
             ))}
